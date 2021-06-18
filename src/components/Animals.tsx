@@ -9,6 +9,8 @@ export const Animals = () => {
     const[animals, setAnimals] = useState(animalsDefaultArray);
     let feedMessageArray: string[] = [];
 
+    let feedMessageStatus: boolean;
+
     useEffect(() => {
         axios.get<Animal[]>('https://animals.azurewebsites.net/api/animals').then((response) => {
 
@@ -57,11 +59,14 @@ export const Animals = () => {
             feedMessageArray.push(animal.name +" är hungrig! Det är gått fler än fyra timmar!");
             // Lagra meddelanden i LS
             localStorage.setItem('feedMessage', JSON.stringify(feedMessageArray));
+            feedMessageStatus = true;
 
         } else {
 
-            feedMessageArray.push("");
+            feedMessageArray.push(animal.name +" är inte hungrig just nu!");
+            // Lagra meddelanden i LS
             localStorage.setItem('feedMessage', JSON.stringify(feedMessageArray));
+            feedMessageStatus = false;
 
         }
         
@@ -70,7 +75,9 @@ export const Animals = () => {
                 <h1>{animal.name}</h1>
                 <img src={animal.imageUrl} alt="showing animal"/>
                 <p>{animal.shortDescription}</p>
-                <h3 className="feedingMessage">{feedMessageArray[feedMeessageIndex++]}</h3>
+                <div className={feedMessageStatus ? 'feedingTimeDiv' : 'notFeedingTimeDiv'}>
+                    <h3>Status: {feedMessageArray[feedMeessageIndex++]}</h3>
+                </div>
                 <Link to={"/animal/"+animal.id} className="infoLink">Visa mer information</Link>
             </div>
         );

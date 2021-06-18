@@ -26,6 +26,9 @@ export const Animal = () => {
     const [animal, setAnimal] = useState(defaultAnimal);
     const [feedmessage, setFeedMessage] = useState("");
 
+    // Används så jag kan byta klassnamn på h3-taggen och visar olika färger på meddelandet
+    const [feedingStatus, setFeedingStatus] = useState(false);
+
     // Används varje gång id:et byts
     useEffect(() => {
 
@@ -56,6 +59,9 @@ export const Animal = () => {
             } else {
                 if(chosenAnimal.isFed) {
                     console.log(chosenAnimal.name,"är inte hungrig just nu.");   
+                    let feedMessage: string = chosenAnimal.name + " är inte hungrig just nu."
+                    setFeedingStatus(false);
+                    setFeedMessage(feedMessage);
                 } else {
                     console.log(chosenAnimal.name,"är hungrig");   
 
@@ -65,6 +71,7 @@ export const Animal = () => {
                     if(new Date(chosenAnimal.lastFed).getTime()+fourHours <= new Date().getTime()) {
                         console.log("Dags att mata igen!!!");
                         let feedMessage: string = "Matdags för " + chosenAnimal.name + "! Klicka på knappen nedan för att mata!"
+                        setFeedingStatus(true);
                         setFeedMessage(feedMessage);
                     }
 
@@ -115,7 +122,7 @@ export const Animal = () => {
 
             <div className="titleDiv">
                 <h1>{animal.name}</h1>
-                <h3>{animal.latinName}</h3>
+                <h3>Latinska namnet: {animal.latinName}</h3>
                 <div>
                     <p>Senast matad: {animal.lastFed}</p>
                     <p>Födelseår: {animal.yearOfBirth}</p>
@@ -137,8 +144,11 @@ export const Animal = () => {
 
             <hr />
 
-            <h3 className="feedingMessage">{feedmessage}</h3>
-            <button className="feedButton" disabled={animal.isFed} onClick={feedAnimal}>Mata {animal.name}!</button>
+            <div className={feedingStatus ? 'feedingTimeDiv' : 'notFeedingTimeDiv'}>
+                <h4>Status: {feedmessage}</h4>
+            </div>
+                <button className="feedButton" disabled={animal.isFed} onClick={feedAnimal}>Mata {animal.name}!</button>
+            
         </div>
         
     )
