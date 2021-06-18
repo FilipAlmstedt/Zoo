@@ -28,9 +28,21 @@ img {
   border: 5px solid black;
 }
 
-.feedingMessage {
-  color: red;
+/*Divs that marks if animal needs feeding*/
+.feedingTimeDiv {
+  border: 1px solid red;
+  background-color: red;
+  color: white;
+  padding: 2%;
+  margin-bottom: 5%;
 }
+.notFeedingTimeDiv {
+  border: 1px solid green;
+  background-color: green;
+  color: white;
+  padding: 2%;
+  margin-bottom: 5%;
+} 
 
 .infoLink {
   text-decoration: none;
