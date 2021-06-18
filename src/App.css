@@ -1,0 +1,93 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.animalNotDetailedDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border:10px solid darkgoldenrod;
+  width: 40vw;
+  padding: 2%;
+}
+
+img {
+  width: 500px;
+  height: auto;
+  border: 5px solid black;
+}
+
+.feedingMessage {
+  color: red;
+}
+
+.infoLink {
+  text-decoration: none;
+  color: blue;
+  transition: color .2s ease-in-out;
+}
+.infoLink:hover {
+  text-decoration: underline;
+  color: lightblue;
+  transition: color .2s ease-in-out;
+}
+
+  /* AnimalComponent*/
+
+hr {
+  border-top: 2px solid red;
+  width: 80vw;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.animalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+}
+
+.titleDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imageDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.longAnimalDescription {
+  width: 50vw;
+  line-height: 1.7em;
+}
+
+.feedButton {
+  padding: 1%;
+  font-family: 'Open Sans';
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-bottom: 2%;
+  text-transform: uppercase;
+}
+.feedButton:hover {
+  background-color: blue;
+  color: white;
+  transition: background-color .2s ease-in-out;
+}
